@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pair Game</title>
+    <style>
+        body{
+            background: #9900CC;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(5, 100px);
+            grid-template-rows: repeat(4, 100px);
+            grid-gap: 10px;
+        }
+        #coverContainer{
+            display: grid;
+            grid-template-columns: repeat(5, 100px);
+            grid-template-rows: repeat(4, 100px);
+            grid-gap: 10px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id = "gameName"> PAIR GAME</div>
+    <div id="score"></div>
+    <div id = "gameScreen">
+        <div id ="coverContainer"></div>
+        <div id= "container"></div>
+    </div>
+    <script src = "main.js"></script>
+</body>
+</html>

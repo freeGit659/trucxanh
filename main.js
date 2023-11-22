@@ -12,10 +12,6 @@ function shuffleCard(num){
         cards.push("./img/card"+i+".jpg");
         cards.push("./img/card"+i+".jpg");
     }
-    // cards.sort(function() {  
-    //     return Math.random() - 0.5
-    // });
-    //console.log(cards);
 }
 
 
@@ -131,5 +127,6 @@ function selectingCard(){
                 })
                 gsap.to(card, { scaleX: 1, duration, delay: duration})
             }
+            card.removeEventListener("click");
         }));
 }

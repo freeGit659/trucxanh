@@ -39,7 +39,7 @@ function spawnCard(num){
         idCards[i-1] = i+cardTemp[0]
         card.createCard(idCards[i-1],"./img/cardCover.jpg", 180, 180, 0, 0, 1);
         var cardChild = document.getElementById(idCards[i-1]);
-        const duration = 0.3;
+        const duration = 0.1;
         x +=200;
         cardTemp.shift();
         i++;
@@ -49,24 +49,6 @@ function spawnCard(num){
         selectingCard();
     }
 
-    // for(let i = 1; i <= num ;i ++){
-
-    //     if(numberColum >=5){
-    //         numberColum = 0;
-    //         x = 0;
-    //         y += 200;
-    //     }
-    //     numberColum++;
-    //     idCards[i-1] = i+cardTemp[0]
-    //     card.createCard(idCards[i-1],"./img/cardCover.jpg", 180, 180, 0, 0, 1);
-    //     var cardChild = document.getElementById(idCards[i-1]);
-    //     const duration = 5;
-    //     gsap.fromTo(cardChild, duration, {x:50,y:50}, {x:x,y:y});
-   
-    //     x +=200;
-    //     cardTemp.shift();
-  
-    // }
 }
 
 function selectingCard(){

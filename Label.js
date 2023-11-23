@@ -2,19 +2,25 @@
 export class Label {
     constructor(id) {
         this.id = id;
+        this.img = document.getElementById(this.id);
     }
     setText(text, container) {
         this.text = text;
         let _text = document.createElement('div');
-        _text.innerText = text;
         _text.id = this.id;
-
-        _text.style.position = 'absolute';
-        _text.style.border = "2px solid #0000FF"
+        let _container = document.getElementById(container);
+        _container.style.position = 'absolute';
+        _container.style.fontFamily = "rubik";
+        _container.style.fontWeight = "800";
+        _container.style.width = "50px";
         document.getElementById(container).appendChild(_text);
         this.img = document.getElementById(this.id);
     }
     getText() { return this.text };
+
+    setTextContent(text, container){
+        document.getElementById(container).textContent = text;
+    }
 
     set sizeHeight(height) {
         this.height = height;

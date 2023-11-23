@@ -1,4 +1,6 @@
+import {Score} from "./Score.js";
 
+var score = 10000;
 export class CardController{
     constructor(){
         this.isFlipped = false;
@@ -6,7 +8,6 @@ export class CardController{
         this.firstCard, this.secondCard;
         this.cards = document.querySelectorAll('img');
         this.shortID;
-        this.score = 10000;
     }
     selectingCard(){
         this.cards.forEach(card => card.addEventListener("click", event => {
@@ -33,7 +34,9 @@ export class CardController{
         const isMatch = shortIDFirstCard === shortIDSecondCard;
         console.log(isMatch);
         if(isMatch) {
-            this.score += 500;
+            score +=500;
+            console.log(this.scoreCurrent);
+
             setTimeout(()=>{
                 this.disableCards(this.firstCard);
                 this.disableCards(this.secondCard);
@@ -42,6 +45,7 @@ export class CardController{
             
         }
         else {
+            score -=1000;
             this.unflipCards(card);
         }
     }
@@ -84,5 +88,8 @@ export class CardController{
             }
         })
         gsap.to(card, { scaleX: 1, duration, delay: duration})
+    }
+    updateScore(){
+        return score;
     }
 }

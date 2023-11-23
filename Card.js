@@ -1,20 +1,14 @@
+import {Sprite} from "./Sprite.js";
 
-export class Label {
-    constructor(id) {
+export class Card{
+    constructor(id){
         this.id = id;
-    }
-    setText(text, container) {
-        this.text = text;
-        let _text = document.createElement('div');
-        _text.innerText = text;
-        _text.id = this.id;
-
-        _text.style.position = 'absolute';
-        _text.style.border = "2px solid #0000FF"
-        document.getElementById(container).appendChild(_text);
+        let node = document.createElement('div');
+        node.id = this.id;
+        node.style.position = 'absolute';
+        document.body.appendChild(node);
         this.img = document.getElementById(this.id);
     }
-    getText() { return this.text };
 
     set sizeHeight(height) {
         this.height = height;
@@ -64,4 +58,16 @@ export class Label {
         this.img.style.transform = `scaleY(` + scale + ")";
     }
 
+    createCard(id, src, width, height, x, y, scaleX){
+        var card = new Sprite(id)
+        card.setSprite(src,this.id);
+        card.sizeWidth = width;
+        card.sizeHeight = height;
+        card.positionX = x;
+        card.positionY = y;
+        card.positionZ = 0;
+        card.scaleX = scaleX;
+    }
+
 }
+

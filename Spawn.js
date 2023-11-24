@@ -10,9 +10,9 @@ export class Spawn{
         this.numberRow = 0; 
         this.x = 0;
         this.y = 0;
-        this.i = 1;
+        this.index = 1;
         this.screenWidthMid = window.innerWidth/2;
-        this.screenHeightMid = window.innerHeight/2;
+        this.screenHeightMid = window.innerHeight/3;
     }
     shuffleCard(num){
         for(let i = 1; i <= num; i++){
@@ -33,20 +33,20 @@ export class Spawn{
         game.selectingCard();
     }
         cardShare(num, card){
-            if (this.i > num) return;
+            if (this.index > num) return;
             if(this.numberColum >=5){
                 this.numberColum = 0;
                 this.numberRow = 0; 
                 this.y += 130;
             }
             this.numberColum++;
-            var cardChild = document.getElementById(this.idCards[this.i-1]);
+            var cardChild = document.getElementById(this.idCards[this.index-1]);
             const duration = 0.1;
             this.cardTemp.shift();
             gsap.to(cardChild, duration, {x:((2-this.numberRow)*130),y:this.y-(1.5*130),ease: 'elastic.out(1, 1)', onComplete: ()=>{
                 this.cardShare(num, card);
             }});
-            this.i++;
+            this.index++;
             this.numberRow++;
         }
 }

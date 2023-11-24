@@ -49,6 +49,14 @@ function gameLoop() {
 }
 gameLoop();
 
+// function setStyle(){
+//     var p = document.getElementById('main');
+//     p.style.backgroundImage = 'url("./img/box.jpg")';
+//     p.style.backgroundSize =  '1000px';
+//     p.backgroundRepeat = 'no-repeat';
+//     p.backgroundPositionY = '20%';
+// }setStyle();
+
 
 
 

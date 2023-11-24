@@ -47,7 +47,7 @@ function gameMain(){
 
     function updateGame() {
         main.getScore();
-    if(cardCtrl.updateNumCard() <= 0) {
+    if(cardCtrl.updateNumCard() <= 18) {
         gameWin.createGameWinPanel(main.score);
         main.isGameOver = true;
     }

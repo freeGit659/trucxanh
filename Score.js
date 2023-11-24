@@ -4,7 +4,7 @@ export class Score{
     constructor(){
         var label = new Label("score");
         this.label = label; 
-        this.label.setText('Score: ')
+        this.label.setLabel('Score: ')
         label.setStyle();
     }
     set setScore(score){

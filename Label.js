@@ -4,8 +4,7 @@ export class Label {
         this.id = id;
         this.labelDOM = document.getElementById(this.id);
     }
-    setText(text) {
-        this.text = text;
+    setLabel() {
         let _text = document.createElement('div');
         _text.id = this.id;
         document.body.appendChild(_text);
@@ -17,16 +16,16 @@ export class Label {
     }
 
     setStyle(){
-        this.scorePositionX = 2.2*(window.innerWidth/5);
-        this.scorePositionY = (window.innerHeight/10);
-        this.labelDOM = document.getElementById(this.id);
+            this.scorePositionX = 2.2*(window.innerWidth/5);
+            this.scorePositionY = (window.innerHeight/10);
+            this.labelDOM = document.getElementById(this.id);
             this.labelDOM.style.padding = "10px 50px 10px 50px";
             this.labelDOM.style.borderRadius = '15px'; 
             this.labelDOM.style.color = '#2c4b7c';
             this.labelDOM.style.position = 'relative';
             this.labelDOM.style.fontWeight = '800';
             this.labelDOM.style.width = "800px";
-            this.labelDOM.style.zIndex = "20";
+            this.labelDOM.style.zIndex = "10";
             this.labelDOM.style.left = this.scorePositionX+"px";
             this.labelDOM.style.top = this.scorePositionY+"px";
             this.labelDOM.style.fontFamily = 'Monaco';

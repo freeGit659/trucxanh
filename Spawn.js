@@ -12,7 +12,7 @@ export class Spawn{
         this.y = 0;
         this.index = 1;
         this.screenWidthMid = window.innerWidth/2;
-        this.screenHeightMid = window.innerHeight/3;
+        this.screenHeightMid = window.innerHeight/3-20;
     }
     shuffleCard(num){
         for(let i = 1; i <= num; i++){

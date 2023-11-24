@@ -1,13 +1,17 @@
 import {CardController} from "./CardController.js"
 import {Spawn} from "./Spawn.js"
 import {Score} from "./Score.js";
+import { GameOver } from "./GameOver.js";
 
 let lastTime;
 var cardCtrl = new CardController();
 var scoreCtrl = new Score();
+var gameWin = new GameOver("gameWin");
+
+
 export class Main{
     constructor(){
-
+        this.isGameOver = false;
     }
     gameLoop(timeStamp) {
     lastTime = lastTime || timeStamp;
@@ -24,38 +28,37 @@ export class Main{
     getScore(){
         this.score = cardCtrl.updateScore();
         scoreCtrl.setScore = this.score
-        console.log(this.score);
+        return this.score;
     }
     update(dt) {
         if (!isUpdating || isFinished) return;
         timer += dt;
         this.getScore();
-        console.log(dt);
     }
 
 }
 
 var main = new Main();
+gameMain();
+function gameMain(){
+    if(main.isGameOver) return;
 
-main.spawnCard();
+    main.spawnCard(20);
 
-function updateGame() {
-   main.getScore();
-  }
-
-function gameLoop() {
-    updateGame();
-    requestAnimationFrame(gameLoop);
+    function updateGame() {
+        main.getScore();
+    if(cardCtrl.updateNumCard() <= 0) {
+        gameWin.createGameWinPanel(main.score);
+        main.isGameOver = true;
+    }
 }
-gameLoop();
 
-// function setStyle(){
-//     var p = document.getElementById('main');
-//     p.style.backgroundImage = 'url("./img/box.jpg")';
-//     p.style.backgroundSize =  '1000px';
-//     p.backgroundRepeat = 'no-repeat';
-//     p.backgroundPositionY = '20%';
-// }setStyle();
+    function gameLoop() {
+        updateGame();
+        requestAnimationFrame(gameLoop);
+    }
+    gameLoop();
+}
 
 
 

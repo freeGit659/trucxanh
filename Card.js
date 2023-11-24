@@ -1,6 +1,6 @@
 import {Sprite} from "./Sprite.js";
 
-export class Card{
+export class Card {
     constructor(id){
         this.id = id;
         let node = document.createElement('div');

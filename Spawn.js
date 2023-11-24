@@ -22,31 +22,25 @@ export class Spawn{
     }
     spawnCard(num){
         this.shuffleCard(num/2);
-        this.cardTemp = this.cards;
+        var cardTemp = this.cards;
         let card = new Card('main');
-        for(let i = 1; i <= num; i++){
-            this.idCards[i-1] = i+this.cardTemp[i]
-            card.createCard(this.idCards[i-1],"./img/cardCover.jpg", 120, 120, this.screenWidthMid,  this.screenHeightMid, 1);
-        }
-        this.cardShare(num, card);
-        let game = new CardController();
-        game.selectingCard();
-    }
-        cardShare(num, card){
-            if (this.index > num) return;
+        for(let i = 0; i < num; i++){
+            this.idCards[i] = i+cardTemp[i];
+            card.createCard(this.idCards[i],"./img/cardCover.jpg", 120, 120, this.screenWidthMid,  this.screenHeightMid+30, 1);
             if(this.numberColum >=5){
                 this.numberColum = 0;
-                this.numberRow = 0; 
                 this.y += 130;
             }
             this.numberColum++;
-            var cardChild = document.getElementById(this.idCards[this.index-1]);
-            const duration = 0.1;
+            var cardChild = document.getElementById(this.idCards[i]);
+            const duration = 0.5;
             this.cardTemp.shift();
-            gsap.to(cardChild, duration, {x:((2-this.numberRow)*130),y:this.y-(1.5*130),ease: 'elastic.out(1, 1)', onComplete: ()=>{
-                this.cardShare(num, card);
+            gsap.to(cardChild, duration, {x:(-(2-i%5)*130),y:this.y-(1.5*130),ease: 'elastic.out(1, 1)', delay: i*0.1, onComplete: ()=>{
+                if(i == 19){
+                    let game = new CardController();
+                    game.selectingCard();
+                }
             }});
-            this.index++;
-            this.numberRow++;
         }
+    }
 }

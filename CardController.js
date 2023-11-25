@@ -12,7 +12,6 @@ export class CardController{
     }
     selectingCard(){
         this.cards.forEach(card => card.addEventListener("click", event => {
-            console.log("check",this.isCheckingMatch);
             if (this.isCheckingMatch) return;
             this.flipCard(card);
             this.shortID = card.id.slice(card.id.indexOf("."));
@@ -26,14 +25,12 @@ export class CardController{
                 this.isCheckingMatch = true;
                 this.checkForMatch(card);
             }
-            console.log("IsFlip", this.isFlipped);
         }));
     }
     checkForMatch(card) {
         let shortIDFirstCard = this.firstCard.id.slice(this.firstCard.id.indexOf("."));
         let shortIDSecondCard = this.secondCard.id.slice(this.secondCard.id.indexOf("."));
-        console.log(this.firstCard, this.secondCard, this.isClickOne(this.firstCard.id, this.secondCard.id));
-        if(this.isClickOne(this.firstCard.id, this.secondCard.id)) {
+                if(this.isClickOne(this.firstCard.id, this.secondCard.id)) {
             this.isFlipped = true;
             return;
         }
@@ -49,19 +46,18 @@ export class CardController{
             this.unflipCards(card);
         }
     }
-    disableCards(card, delay) {
-        numCard -= 1;
-        console.log(this.numCard);
+    disableCards(card, delay, xDisable) {
+        var screenWidthMid =  window.innerWidth/30-100;
+        var screenHeightMid = window.innerHeight/30-30;
         this.isCheckingMatch = true;
         const duration = 1;
         gsap.to(card, {
-            scaleX: 1.5 , scaleY : 1.5, zIndex : 10,
+            scaleX: 1.5 , scaleY : 1.5, zIndex : 10, x: screenWidthMid, y: screenHeightMid,
             duration,delay: delay,
             onComplete: () => {
                 card.remove();
                 this.clearCard();
-
-
+                numCard -= 1;
             }
         });
     }
@@ -110,7 +106,10 @@ export class CardController{
         this.secondCard = null;
     }
     updateNumCard(){
-        console.log(numCard);
         return numCard;
+    }
+    resetScore(){
+        score = 10000;
+        numCard = 20;
     }
 }

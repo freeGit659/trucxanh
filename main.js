@@ -1,5 +1,5 @@
 import {CardController} from "./CardController.js"
-import {Spawn} from "./Spawn.js"
+import {Spawn} from "./Spawner.js"
 import {Score} from "./Score.js";
 import { GameOver } from "./GameOver.js";
 
@@ -12,13 +12,6 @@ var gameWin = new GameOver("gameWin");
 export class Main{
     constructor(){
         this.isGameOver = false;
-    }
-    gameLoop(timeStamp) {
-    lastTime = lastTime || timeStamp;
-    let dt = (timeStamp - lastTime)/1000;
-    lastTime = timeStamp;
-    this.update(dt);
-    window.requestAnimationFrame(this.gameLoop(0.17));
     }
     
     spawnCard(){
@@ -35,6 +28,12 @@ export class Main{
         timer += dt;
         this.getScore();
     }
+    restartGame(){
+        cardCtrl.resetScore();
+        main.isGameOver = false;
+        gameMain();
+        gameWin = new GameOver("gameWin");
+    }
 
 }
 
@@ -42,14 +41,13 @@ var main = new Main();
 gameMain();
 function gameMain(){
     if(main.isGameOver) return;
-
     main.spawnCard(20);
 
     function updateGame() {
         main.getScore();
-    if(cardCtrl.updateNumCard() <= 18) {
-        gameWin.createGameWinPanel(main.score);
+    if(cardCtrl.updateNumCard() <= 0 && !main.isGameOver) {
         main.isGameOver = true;
+        gameWin.createGameWinPanel(main.score);
     }
 }
 

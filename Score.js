@@ -8,7 +8,7 @@ export class Score{
         label.setStyle();
     }
     set setScore(score){
-        this.label.setTextContent('Score: '+score,'container')
+        this.label.setTextContent('Score: '+score)
     }
     get getScore(){ return this.label.getText();}
 }

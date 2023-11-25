@@ -8,7 +8,7 @@ export class Sprite {
         let _img = document.createElement('img');
         _img.src = sprite;
         _img.id = this.id;
-
+        _img.style.cursor = 'pointer';
         _img.style.position = 'absolute';
         _img.style.border = "2px solid #0000FF"
         _img.style.borderRadius = "10px";

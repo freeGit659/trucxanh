@@ -2,6 +2,9 @@ import {Score} from "./Score.js";
 
 var score = 10000;
 var numCard = 20;
+const screenWidthMid =  window.innerWidth/30-100;
+const screenHeightMid = window.innerHeight/30-30;
+
 export class CardController{
     constructor(){
         this.isFlipped = false;
@@ -37,32 +40,31 @@ export class CardController{
         const isMatch = shortIDFirstCard === shortIDSecondCard;
         if(isMatch) {
             this.isCheckingMatch = true;
-            score += 1000;
-            this.disableCards(this.firstCard, 1);
+            this.disableCards(this.firstCard, 1, true);
             this.disableCards(this.secondCard,1);
         }
         else {
-            score -= 500;
             this.unflipCards(card);
         }
     }
-    disableCards(card, delay) {
-        var screenWidthMid =  window.innerWidth/30-100;
-        var screenHeightMid = window.innerHeight/30-30;
+    disableCards(card, delay, isOneRound) {
         this.isCheckingMatch = true;
         const duration = 1;
         gsap.to(card, {
             scaleX: 1.5 , scaleY : 1.5, zIndex : 10, x: screenWidthMid, y: screenHeightMid,
             duration,delay: delay,
             onComplete: () => {
+                var scorePopUp = new Score();
+                scorePopUp.createScorePopup('+1000', 'rgb(255,250,65)');
                 card.remove();
                 this.clearCard();
+                if (isOneRound) score += 1000;
                 numCard -= 1;
             }
         });
     }
     unflipCards() {
-            this.flipCardBack(this.firstCard);
+            this.flipCardBack(this.firstCard, true);
             this.flipCardBack(this.secondCard);
         }
     flipCard(card){
@@ -79,13 +81,16 @@ export class CardController{
             this.isCheckingMatch = false;
         }})
     }
-    flipCardBack(card){
+    flipCardBack(card, isOneRound){
         this.isCheckingMatch = true;
         const duration = 0.5;
         gsap.to(card, {
             scaleX: 0,
             duration, delay: 1,
             onComplete: () => {
+                var scorePopUp = new Score();
+                scorePopUp.createScorePopup('-500','#FF0000');
+                if (isOneRound) score -= 500;
                 card.src = "././images/cardCover.jpg";
             }
         })

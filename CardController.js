@@ -46,7 +46,7 @@ export class CardController{
             this.unflipCards(card);
         }
     }
-    disableCards(card, delay, xDisable) {
+    disableCards(card, delay) {
         var screenWidthMid =  window.innerWidth/30-100;
         var screenHeightMid = window.innerHeight/30-30;
         this.isCheckingMatch = true;
@@ -65,7 +65,7 @@ export class CardController{
             this.flipCardBack(this.firstCard);
             this.flipCardBack(this.secondCard);
         }
-    flipCard(card, func){
+    flipCard(card){
         this.isCheckingMatch = true;
         const duration = 0.5;
         gsap.to(card, {

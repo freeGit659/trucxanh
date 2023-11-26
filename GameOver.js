@@ -27,7 +27,7 @@ export class GameOver{
         overlayPanel.id = 'panel';
         document.getElementById('gameWin').appendChild(overlayPanel);
         this.createScoreNotification(score);
-        this.restartButton();
+        this.restartButton('win','-13%');
     }
 
     createScoreNotification(score){
@@ -52,14 +52,14 @@ export class GameOver{
         _label.style.display = 'inline-block';
         _label.style.left = "5%"
     }
-    restartButton(){
+    restartButton(status, left){
         var restartLabel = new Label("restart");
         restartLabel.setLabel();
         var _label = document.getElementById("restart");
         _label.textContent = 'RESTART';
         _label.positionX = "-200px";
         var scorePositionX = 1.5*(window.innerWidth/4);
-        var scorePositionY = 2*(window.innerHeight/4);
+        var scorePositionY = 2*(window.innerHeight/4)+50;
         _label.style.border = '5px solid';
         _label.style.display = 'inline-block';
         _label.style.width = '200px'
@@ -74,16 +74,49 @@ export class GameOver{
         _label.style.fontSize = "30px";
         _label.style.textAlign = 'center';
         _label.style.cursor = 'pointer';
-        _label.style.left = "-13%"
-        document.getElementById('gameWin').appendChild(_label);
-        _label.addEventListener("click", event => {
-            this.restartGame();
-        });
+        _label.style.left = left;
+        if(status === 'win') {
+            document.getElementById('gameWin').appendChild(_label);
+            _label.addEventListener("click", event => {
+                this.restartGame('win');
+            });
+        }
+        else if (status ==='lost') {
+            document.getElementById('gameLost').appendChild(_label);
+            _label.addEventListener("click", event => {
+                this.restartGame('lost');
+            });
+        }
     }
-    restartGame(){
+
+    createGameLostPanel(){
+        this.label = new Label("lostPanel");
+        let overlayPanel = document.createElement('div');
+        overlayPanel.style.display = 'inline-block';
+        overlayPanel.style.backgroundImage = 'url(./img/lost.png)';
+        overlayPanel.style.backgroundRepeat = 'no-repeat';
+        overlayPanel.style.backgroundSize = 'cover';
+        overlayPanel.style.position = "fixed";
+        overlayPanel.style.top = "0";
+        overlayPanel.style.left = "0%";
+        overlayPanel.style.width = "100%";
+        overlayPanel.style.height = "100%";
+        overlayPanel.style.zIndex = "19";
+        overlayPanel.id = 'lost-panel';
+        document.getElementById('gameLost').appendChild(overlayPanel);
+        this.restartButton('lost', '0%');
+    }
+    restartGame(status){
         var main = new Main();
         main.restartGame();
-        var winPanel = document.getElementById('gameWin');
-        winPanel.remove();
+        if(status === 'win'){
+            var winPanel = document.getElementById('gameWin');
+            winPanel.remove();
+        }
+        else if (status === "lost"){
+            var lostPanel = document.getElementById('gameLost');
+            lostPanel.remove();
+        }
+
     }
 }

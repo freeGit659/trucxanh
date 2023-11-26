@@ -46,4 +46,10 @@ export class Spawn{
             }});
         }
     }
+
+    respawnCard(){
+        var main = document.getElementById('main');
+        main.remove();
+        this.spawnCard(20);
+    }
 }

@@ -13,13 +13,11 @@ export class Spawn{
         this.index = 1;
         this.screenWidthMid = window.innerWidth/2;
         this.screenHeightMid = window.innerHeight/3-100;
-
-        console.log(this.screenWidthMid, this.screenHeightMid);
     }
     shuffleCard(num){
         const cards1 = [];
         for(let i = 1; i <= num; i++){
-            cards1.push("./img/card"+i+".jpg");
+            cards1.push("././images/card"+i+".jpg");
         }
         this.cards = cards1.concat(cards1);
     }
@@ -29,7 +27,7 @@ export class Spawn{
         let card = new Card('main');
         for(let i = 0; i < num; i++){
             this.idCards[i] = i+cardTemp[i];
-            card.createCard(this.idCards[i],"./img/cardCover.jpg", 120, 120, this.screenWidthMid-this.screenWidthMid/16,  this.screenHeightMid+30, 1);
+            card.createCard(this.idCards[i],"././images/cardCover.jpg", 120, 120, this.screenWidthMid-this.screenWidthMid/16,  this.screenHeightMid+30, 1);
             if(this.numberColum >=5){
                 this.numberColum = 0;
                 this.y += 130;

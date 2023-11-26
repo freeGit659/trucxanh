@@ -15,7 +15,7 @@ export class GameOver{
         var positionY = (window.innerHeight/10);
         let overlayPanel = document.createElement('div');
         overlayPanel.style.display = 'inline-block';
-        overlayPanel.style.backgroundImage = 'url(./img/win.jpg)';
+        overlayPanel.style.backgroundImage = 'url(././images/win.jpg)';
         overlayPanel.style.backgroundRepeat = 'no-repeat';
         overlayPanel.style.backgroundSize = 'cover';
         overlayPanel.style.position = "fixed";
@@ -93,7 +93,7 @@ export class GameOver{
         this.label = new Label("lostPanel");
         let overlayPanel = document.createElement('div');
         overlayPanel.style.display = 'inline-block';
-        overlayPanel.style.backgroundImage = 'url(./img/lost.png)';
+        overlayPanel.style.backgroundImage = 'url(././images/lost.png)';
         overlayPanel.style.backgroundRepeat = 'no-repeat';
         overlayPanel.style.backgroundSize = 'cover';
         overlayPanel.style.position = "fixed";

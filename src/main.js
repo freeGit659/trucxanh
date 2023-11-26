@@ -1,6 +1,7 @@
 import {CardController} from "./CardController.js"
 import {Spawn} from "./Spawner.js"
 import {Score} from "./Score.js";
+import { StartManager } from "./StartManager.js";
 import { GameOver } from "./GameOver.js";
 
 let lastTime;
@@ -40,12 +41,17 @@ export class Main{
         }
         gameWin = new GameOver("gameWin");
         gameLost  = new GameOver("gameLost");
+    } 
+    startGame(){
+        gameMain(true);
     }
 
 }
 
 var main = new Main();
-gameMain(true);
+var start = new StartManager('startPanel');
+start.createStartPanel();;
+
 function gameMain(begin){
     if(main.isGameOver) return;
     if(begin) main.spawnCard(20);

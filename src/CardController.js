@@ -86,7 +86,7 @@ export class CardController{
             scaleX: 0,
             duration, delay: 1,
             onComplete: () => {
-                card.src = "./img/cardCover.jpg";
+                card.src = "././images/cardCover.jpg";
             }
         })
         gsap.to(card, { scaleX: 1, duration, delay: duration+1, onComplete: () => {
@@ -102,7 +102,6 @@ export class CardController{
 
     clearCard(){
         this.isCheckingMatch = false;
-        //this.firstCard = null;
         this.secondCard = null;
     }
     updateNumCard(){
